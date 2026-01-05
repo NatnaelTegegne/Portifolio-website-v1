@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Inter:wght@400;600;700;800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +16,7 @@
   --border-color: #1f1f1f;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Inter:wght@400;600;700;800&display=swap');
+
 
 
 body {
@@ -28,12 +30,12 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Inter', sans-serif;
-  font-weight: 700; /* Makes them bold and punchy */
-  letter-spacing: 0.02em; /* Tightens letters slightly for a modern look */
-  color: #000; /* distinct black for headings */
+  font-weight: 700; 
+  letter-spacing: 0.02em; 
+  color: #000; 
 }
 
-/* Optional: Ensure buttons also use the clean Inter font */
+
 button, .btn, .nav-link {
   font-family: 'Inter', sans-serif;
 }
