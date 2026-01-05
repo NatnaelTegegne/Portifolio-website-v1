@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --border-color: #1f1f1f;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Inter:wght@400;600;700;800&display=swap');
+
+
+body {
+    margin: 0;
+    font-family: 'Fira Code', monospace;
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+    background-color: var(--bg-primary);
+    color: white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700; /* Makes them bold and punchy */
+  letter-spacing: 0.02em; /* Tightens letters slightly for a modern look */
+  color: #000; /* distinct black for headings */
+}
+
+/* Optional: Ensure buttons also use the clean Inter font */
+button, .btn, .nav-link {
+  font-family: 'Inter', sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+}

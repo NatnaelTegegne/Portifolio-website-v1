@@ -1,0 +1,97 @@
+.my-story {
+    padding: 100px 20px;
+    background-color: var(--bg-primary);
+}
+
+.story-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.story-container {
+    text-align: center;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 60px;
+    color: var(--text-primary);
+}
+
+.story-content {
+    line-height: 1.8;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.story-intro {
+    margin-bottom: 30px;
+    font-size: 1.15rem;
+}
+
+.story-section {
+    margin-bottom: 60px;
+}
+
+.story-section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+.story-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.collapse-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-left: 3px solid var(--accent);
+    background-color: var(--bg-secondary);
+    border-radius: 4px;
+}
+
+.collapse-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.bottom-line {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+.bottom-line p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.rock-bottom {
+    margin-top: 20px !important;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.feature-list {
+    margin: 20px 0;
+    padding-left: 30px;
+}
+
+.feature-list li {
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+
+.achievements-grid {
+    
+}
