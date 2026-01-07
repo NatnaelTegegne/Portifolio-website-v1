@@ -13,10 +13,11 @@ const Hero = () => {
                             <span className='hero-name'>Natnael Tegegne</span>
                         </h1>
                         <p className="hero-subtitle">
-                            Computer Science Student at Pitt
+                            Computer Science & Mathematics Student | Software Developer
                         </p>
                         <p className="hero-description">
-                            I build creative projects and I am a big fan of AI!
+                            I’m a second-year student at the University of Pittsburgh studying Computer Science and Mathematics, 
+                            interested in using technology and analytical thinking to solve real-world problems.
                         </p>
                         <div className="hero-buttons">
                             <a href="#projects" className="btn btn-primary">View Projects</a>

@@ -10,30 +10,16 @@ mongoose.connect(process.env.MONGO_URI)
 // The Data we want to upload
 const projects = [
     {
-      title: "Polar H10 ECG Arrhythmia Detector",
-      description: "A real-time ECG monitoring application that streams live cardiac data from Polar H10 chest straps.",
-      tags: ["Next.js", "TypeScript", "Expo", "Python"],
-      codeLink: "https://github.com/yourusername/project1", 
+      title: "Panther AI Club Website",
+      description: "I planned, designed, and built the official website for Panther AI Club at the University of Pittsburgh. The platform manages member data, supports registration, showcases events, blogs, and resources, and provides admin access to manage member information and club activities. This project strengthened my skills in full-stack development and building end-to-end web solutions.",
+      tags: ["MongoDB", "Express", "React", "Node.js"],
+      codeLink: "#", 
       demoLink: "#"
     },
     {
-      title: "SOLUSDT Signal Bot",
-      description: "A custom algorithmic trading system for Solana using custom signals and BTCUSDT price context.",
-      tags: ["Python", "Pandas", "Matplotlib", "Crypto"],
-      codeLink: "#",
-      demoLink: "#"
-    },
-    {
-      title: "GoCoachly",
-      description: "GoCoachly helps high-ticket coaches scale by automating workflows and surfacing personalized insights.",
-      tags: ["Next.js", "Supabase", "Tailwind CSS"],
-      codeLink: "#",
-      demoLink: "#"
-    },
-    {
-      title: "MyTerminal Project",
-      description: "GoCoachly helps high-ticket coaches scale by automating workflows and surfacing personalized insights.",
-      tags: ["Next.js", "Supabase", "Tailwind CSS"],
+      title: "The Best Neighborhood in Pittsburgh",
+      description: "A data-driven analysis to determine the best neighborhood to live in for families in Pittsburgh using datasets from WPRDC. I worked in a team of three, handling one of the datasets and contributing to the final conclusions. This project enhanced my data analysis, visualization, and collaborative research skills.",
+      tags: ["Python", "Pandas", "Matplotlib"],
       codeLink: "#",
       demoLink: "#"
     }
