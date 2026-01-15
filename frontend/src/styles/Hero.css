@@ -208,10 +208,40 @@
     }
 
     .btn {
-        width: 100%;
+        width: 80%;
+        text-align: center;
+        
+    }
+    .hero-text  {
+        /* width: 450px; */
+        padding: 10px;
+        
+    }
+
+    .hero-buttons {
+        align-items: center;
+    }
+
+    .hero-title, .hero-subtitle, .hero-description {
         text-align: center;
     }
 
+    .hero-subtitle {
+        font-size: 1.2em;
+    }
+
+    .hero-description {
+        font-size: 1em;
+    }
+
+    .hero-side {
+        display: none;
+    }
+
+    .hero-social {
+        display: flex;
+        justify-content: center;
+    }
     
 }
 

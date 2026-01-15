@@ -203,3 +203,9 @@
     gap: 40px;
   }
 }
+  
+@media (max-width: 768px) {
+  .section-title {
+    text-align: center;
+  }
+}

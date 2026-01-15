@@ -42,3 +42,18 @@ button, .btn, .nav-link {
 html {
     scroll-behavior: smooth;
 }
+
+@media (max-width: 786px) {
+  body {
+    font-size: 14px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .navbar-menu {
+    flex-direction: column;
+    align-items: center;
+  }
+}

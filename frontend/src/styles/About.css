@@ -95,3 +95,9 @@
 .achievements-grid {
     
 }
+
+@media (max-width: 768px) {
+    .story-intro {
+        font-size: 1em;
+    }
+}

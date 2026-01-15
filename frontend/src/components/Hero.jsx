@@ -42,7 +42,7 @@ const Hero = () => {
                     <a href="https://github.com/NatnaelTegegne" target='_blank'  rel="noopener noreferrer" className="social-link">
                         <FaGithub size={50}  className='icon' />
                     </a>
-                    <a href="https://www.linkedin.com/in/natnael-tegegne-063204200" target='_blank'  rel="noopener noreferrer" className="social-link">
+                    <a href="https://www.linkedin.com/in/natnael-tegegne" target='_blank'  rel="noopener noreferrer" className="social-link">
                         <FaLinkedin size={50}  className='icon' />
                     </a>
                     <a href="mailto:nat205@pitt.edu" target='_blank'  rel="noopener noreferrer" className="social-link">
