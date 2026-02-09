@@ -35,15 +35,7 @@ const WorkExperience = () => {
 
                         Conducted user surveys and analyzed feedback to enhance platform effectiveness.`,
             period: "July 2024 – Present",
-        },
-        {
-            title: "Physics Instructor (Volunteer)",
-            company: "St. Amanuel Orthodox Church",
-            description: `Taught Physics to students in grades 7–11, improving conceptual understanding and academic performance.
-
-                        Developed structured learning materials and mock exams to assess progress and boost confidence.`,
-            period: "2022 – 2023",
-        },
+        }
     ];
 
     return (

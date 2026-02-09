@@ -44,7 +44,7 @@ const Projects = () => {
             .catch(error => console.error("Error fetching projects:", error));
     }, []); //Empty array means "run only once"
 
-    if (loading) return <h2 className='loading-message'>Loading projects...</h2>;
+    if (loading) return <h2 className='loading-message'>Loading projects...(Please wait a little bit)</h2>;
 
     return(
         <section id="projects" className="featured-projects">
