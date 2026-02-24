@@ -96,6 +96,20 @@
   color: var(--accent-hover);
 }
 
+.button-link {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button-link:hover {
+  background-color: var(--accent-hover);
+  color: var(--bg-primary);
+}
+
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
@@ -106,6 +120,11 @@
   }
 }
 
+@media (min-width: 769px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 .loading-message{
     color: white;

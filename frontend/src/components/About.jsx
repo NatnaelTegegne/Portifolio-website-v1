@@ -7,12 +7,7 @@ const About = () => {
 
                 <div className="story-content">
                     <p className="story-intro">
-                        I’m Natnael, a driven Computer Science student and tech founder with a strong passion for building impactful solutions. 
-                        I’ve worked across software development, education, and entrepreneurship, founding an online academy that has supported hundreds of students, 
-                        leading student organizations, and building digital products for real users. 
-                        I’m especially interested in the intersection of engineering, technology, and problem-solving, and 
-                        I enjoy turning ideas into practical, well-designed systems that create real value.
-
+                        Hello! I’m Natnael. I’ve always been fascinated by how technology can solve everyday problems, which led me to study Computer Science and dive straight into entrepreneurship. Over the past few years, I’ve built digital products for real users, led student tech communities, and founded an educational platform that supports hundreds of students. I love the entire process of taking a raw idea and turning it into a practical, impactful system.
                     </p>
                 </div>
             </div>
