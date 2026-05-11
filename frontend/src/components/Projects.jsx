@@ -11,16 +11,26 @@ const Projects = () => {
     tags: ["AI Agents", "FastAPI", "Next.js", "MCP", "LLMs", "FinTech", "Compliance"],
     codeLink: "https://github.com/vijay-raghav/tart-hacks",
     supportLink: "#",
-    demoLink: "https://sentinel-pi-steel.vercel.app/"
-}
-,
+    demoLink: "https://sentinel-pi-steel.vercel.app/",
+    staticDemo: "#"
+},
 {
     title: "Panther AI Club Website",
     description: "I planned, designed, and built the official website for Panther AI Club at the University of Pittsburgh. The platform manages member data, supports registration, showcases events, blogs, and resources, and provides admin access to manage member information and club activities. This project strengthened my skills in full-stack development and building end-to-end web solutions.",
     tags: ["MongoDB", "Express", "React", "Node.js"],
     codeLink: "#",
     supportLink: "#",
-    demoLink: "https://pitt-panther-ai-club.vercel.app/"
+    demoLink: "https://pitt-panther-ai-club.vercel.app/",
+    staticDemo: "#"
+},
+{
+    title: "Piky-Park",
+    description: "Real-time parking spot detection system built for NexHacks 2026. Uses PyTorch (ResNet50) for computer vision, Flask for the backend, and React (Vite) for the admin dashboard.",
+    tags: ["Pytorch", "Flask", "React", "Node.Js"],
+    codeLink: "https://github.com/NatnaelTegegne/piky-park",
+    supportLink: "#",
+    demoLink: "#",
+    staticDemo: "https://www.youtube.com/embed/Lu5FTQa-pDQ?si=nmSQLnEAtO4rwwsJ&amp;start=18"
 },
 {
     title: "The Best Neighborhood in Pittsburgh",
@@ -28,7 +38,8 @@ const Projects = () => {
     tags: ["Python", "Pandas", "Matplotlib"],
     codeLink: "https://github.com/NatnaelTegegne/The-best-neighborhood-in-Pittsburgh",
     supportLink: "#",
-    demoLink: "#"
+    demoLink: "#",
+    staticDemo: "#"
 }
     ]
 
@@ -70,6 +81,18 @@ const Projects = () => {
                                         height="400px"
                                         frameBorder="0"
                                         allowFullScreen
+                                    ></iframe>
+                                </div>
+                            )} 
+                            {project.staticDemo !== "#" && (
+                                <div className="project-embed">
+                                    <iframe 
+                                    src={project.staticDemo}
+                                    title={project.title}
+                                    width="100%"
+                                    height="400px"
+                                    frameBorder="0"
+                                    allowFullScreen
                                     ></iframe>
                                 </div>
                             )}

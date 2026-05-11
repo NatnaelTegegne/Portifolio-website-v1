@@ -3,7 +3,14 @@ import "../styles/WorkExperience.css";
 const WorkExperience = () => {
     const experiences = [
         {
-            title: "VP of Infrastructure",
+            title: "Software Engineer Intern",
+            company: "Greater Hazelwood Community Collaborative",
+            description: `Partnering with a cross-functional team to build a comprehensive website 
+                            supporting the GHCC’s community-led initiatives.`,
+            period: "May 2026 – Present",
+        },
+        {
+            title: "Director of Technology",
             company: "Panther AI Club, University of Pittsburgh",
             description: `Built and maintain the club’s website and technical infrastructure.
 
