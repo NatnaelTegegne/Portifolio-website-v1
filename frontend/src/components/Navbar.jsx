@@ -27,7 +27,7 @@ const Navbar = () => {
                 </div>
 
                 <ul className={isOpen ? "nav-menu active" : "nav-menu"}>
-                    <li className='nav-item'><a href="#about" className="nav-link" onClick={toggleMenu}>About</a></li>
+                    {/* <li className='nav-item'><a href="#about" className="nav-link" onClick={toggleMenu}>About</a></li> */}
                     <li className='nav-item'><a href="#projects" className="nav-link" onClick={toggleMenu}>Projects</a></li>
                     <li className='nav-item'><a href="#experience" className="nav-link" onClick={toggleMenu}>Experience</a></li>
                     {/* <li className='nav-item'><a href="#blogs" className="nav-link" onClick={toggleMenu}>Blogs</a></li> */}
