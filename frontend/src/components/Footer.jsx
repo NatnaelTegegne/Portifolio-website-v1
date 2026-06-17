@@ -1,4 +1,6 @@
-import { FaGithub, FaEnvelope, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa';
+import { HiOutlineMail } from 'react-icons/hi';
+
 import '../styles/Footer.css';
 
 const Footer = () => {
@@ -6,30 +8,41 @@ const Footer = () => {
 
     return (
         <footer className="footer">
-            <div className="footer-container">
-                <div className="footer-content">
-                    <div className="footer-brand">
-                        <p className="footer-name">Natnael-Dev</p>
-                    </div>
-                    <div className="footer-links">
-                        <a href="https://github.com/NatnaelTegegne" target="_blank" rel="noopener noreferrer" className="footer-link">
-                            <FaGithub size={30} />
-                        </a>
-                        <a href="https://www.linkedin.com/in/natnael-tegegne-063204200" target="_blank" rel="noopener noreferrer" className="footer-link">
-                            <FaLinkedin size={30} />
-                        </a>
-                        <a href="mailto:nat205@pitt.edu" target="_blank" rel="noopener noreferrer" className="footer-link">
-                            <FaEnvelope size={30} />
-                        </a>
-                    </div>
+            <div className="footer-inner">
+                <div className="footer-left">
+                    <a href="#home" className="footer-logo">
+                        <span className="logo-bracket">&lt;</span>NT<span className="logo-bracket">/&gt;</span>
+                    </a>
+                    <p className="footer-tagline">Building at the intersection of CS & Mathematics.</p>
                 </div>
-                <div className="footer-bottom">
-                    <p>&copy; {currentYear} Natnael Tegegne. All rights reserved.</p>
+
+                <div className="footer-socials">
+                    <a href="https://github.com/NatnaelTegegne" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="GitHub">
+                        <FaGithub size={18} />
+                    </a>
+                    <a href="https://www.linkedin.com/in/natnael-tegegne" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn">
+                        <FaLinkedin size={18} />
+                    </a>
+                    <a href="https://www.instagram.com/nattynatharious/" className="footer-social-link" aria-label="Email">
+                        <FaInstagram size={20} />
+                    </a>
+                    <a href="https://www.tiktok.com/@nattynatharious" className="footer-social-link" aria-label="Email">
+                        <FaTiktok size={20} />
+                    </a>
+                    <a href="https://www.youtube.com/@nattyNatharious" className="footer-social-link" aria-label="Email">
+                        <FaYoutube size={20} />
+                    </a>
+                    <a href="mailto:natnaelbereta@gmail.com" className="footer-social-link" aria-label="Email">
+                        <HiOutlineMail size={20} />
+                    </a>
                 </div>
+            </div>
+
+            <div className="footer-bottom">
+                <p>© {currentYear} Natnael Tegegne. All rights reserved.</p>
             </div>
         </footer>
     );
 };
-
 
 export default Footer;

@@ -1,59 +1,234 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Inter:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ─── CSS Reset ─────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* ─── Design Tokens ─────────────────────────────────────── */
 :root {
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #111111;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --accent: #6366f1;
-  --accent-hover: #818cf8;
-  --border-color: #1f1f1f;
+  /* Light mode (default) — cream/linen palette */
+  --bg-primary:      #F5F0E8;
+  --bg-secondary:    #EDE8DF;
+  --bg-card:         #FDFAF5;
+  --bg-card-hover:   #FFFFFF;
+
+  --text-primary:    #1A1A1A;
+  --text-secondary:  #5C5C5C;
+  --text-muted:      #8A8A8A;
+
+  --accent:          #E05A45;
+  --accent-hover:    #C94A36;
+  --accent-light:    #FDEAE7;
+
+  --border:          #DDD8CF;
+  --border-strong:   #C5BFB5;
+
+  --shadow-sm:       0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md:       0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg:       0 8px 32px rgba(0,0,0,0.10);
+
+  --radius-sm:       6px;
+  --radius-md:       12px;
+  --radius-lg:       20px;
+  --radius-full:     999px;
+
+  --font-sans:       'DM Sans', system-ui, sans-serif;
+  --font-serif:      'DM Serif Display', Georgia, serif;
+
+  --transition:      all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --navbar-h:        68px;
 }
 
+/* ─── Dark Mode Tokens ──────────────────────────────────── */
+[data-theme="dark"] {
+  --bg-primary:      #111110;
+  --bg-secondary:    #1A1917;
+  --bg-card:         #1E1D1B;
+  --bg-card-hover:   #252421;
 
+  --text-primary:    #F0EBE3;
+  --text-secondary:  #A89F97;
+  --text-muted:      #6B655F;
 
+  --accent:          #E8664F;
+  --accent-hover:    #F07A64;
+  --accent-light:    #2C1A16;
+
+  --border:          #2E2C29;
+  --border-strong:   #3D3A36;
+
+  --shadow-sm:       0 1px 3px rgba(0,0,0,0.30);
+  --shadow-md:       0 4px 16px rgba(0,0,0,0.40);
+  --shadow-lg:       0 8px 32px rgba(0,0,0,0.50);
+}
+
+/* ─── Base ──────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
 
 body {
-    margin: 0;
-    font-family: 'Fira Code', monospace;
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
-  -webkit-font-smoothing: antialiased;
-    background-color: var(--bg-primary);
-    color: white;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 700; 
-  letter-spacing: 0.02em; 
-  color: #000; 
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
 }
 
-
-button, .btn, .nav-link {
-  font-family: 'Inter', sans-serif;
-}
-html {
-    scroll-behavior: smooth;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-@media (max-width: 786px) {
-  body {
-    font-size: 14px;
-  }
+img {
+  max-width: 100%;
+  display: block;
+}
 
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .navbar-menu {
-    flex-direction: column;
-    align-items: center;
-  }
+/* ─── Utility ───────────────────────────────────────────── */
+/* § Section number header*/
+.section-num-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-sym {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.section-num {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'Courier New', monospace;
+  flex-shrink: 0;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: var(--transition);
+}
+
+.tag:hover {
+  background: var(--accent-light);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: 0.01em;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* ─── Divider ───────────────────────────────────────────── */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin: 0;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ─── Selection ─────────────────────────────────────────── */
+::selection {
+  background: var(--accent);
+  color: #fff;
 }
