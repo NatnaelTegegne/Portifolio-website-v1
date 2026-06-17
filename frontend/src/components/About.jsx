@@ -3,7 +3,7 @@ import {
     SiPython, SiJavascript, SiCplusplus, SiMysql,
     SiReact, SiNodedotjs, SiExpress, SiFlask, SiFastapi, SiNextdotjs,
     SiPytorch, SiPandas, SiPlotly, SiLangchain,
-    SiGit, SiMongodb, SiPostgresql, SiDocker, SiVite, SiWordpress,
+    SiGit, SiMongodb, SiPostgresql, SiDocker, SiVite, SiWordpress, SiSpringboot,
 } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa';
 
@@ -56,7 +56,7 @@ const SkillTag = ({ skill }) => {
 const About = () => {
     const skills = [
         { category: 'Languages',  items: ['Python', 'JavaScript', 'Java', 'SQL'] },
-        { category: 'Frameworks', items: ['Spring Boot', 'React', 'Node.js', 'Next.js'] },
+        { category: 'Frameworks', items: ['React', 'Node.js', 'Next.js', 'Spring Boot'] },
         { category: 'Data & AI',  items: [ 'Pandas', 'Matplotlib'] },
         { category: 'Tools',      items: ['Git', 'MongoDB', 'PostgreSQL', 'Docker', 'Vite', 'WordPress'] },
     ];
