@@ -70,6 +70,7 @@ const Hero = () => {
             </a>
             <a
               href="https://www.instagram.com/nattynatharious/"
+              target="_blank"
               className="footer-social-link"
               aria-label="Email"
             >
@@ -77,6 +78,7 @@ const Hero = () => {
             </a>
             <a
               href="https://www.tiktok.com/@nattynatharious"
+              target="_blank"
               className="footer-social-link"
               aria-label="Email"
             >
@@ -84,6 +86,7 @@ const Hero = () => {
             </a>
             <a
               href="https://www.youtube.com/@nattyNatharious"
+              target="_blank"
               className="footer-social-link"
               aria-label="Email"
             >
@@ -91,6 +94,7 @@ const Hero = () => {
             </a>
             <a
               href="mailto:natnaelbereta@gmail.com"
+              target="_blank"
               className="social-icon"
               aria-label="Email"
             >
