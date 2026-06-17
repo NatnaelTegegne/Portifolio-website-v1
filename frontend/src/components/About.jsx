@@ -23,6 +23,7 @@ const SKILL_ICON_MAP = {
     'Flask':        { Icon: SiFlask,       label: 'Flask',      color: '#888888' },
     'FastAPI':      { Icon: SiFastapi,     label: 'FastAPI',    color: '#009688' },
     'Next.js':      { Icon: SiNextdotjs,   label: 'Next.js',    color: '#888888' },
+    'Spring Boot':  { Icon: SiSpringboot, label: 'Spring Boot', color: '#6DB33F' },
 
     /* ── Data & AI ── */
     'PyTorch':      { Icon: SiPytorch,     label: 'PyTorch',    color: '#EE4C2C' },
@@ -55,7 +56,7 @@ const SkillTag = ({ skill }) => {
 const About = () => {
     const skills = [
         { category: 'Languages',  items: ['Python', 'JavaScript', 'Java', 'SQL'] },
-        { category: 'Frameworks', items: ['React', 'Node.js', 'Next.js'] },
+        { category: 'Frameworks', items: ['Spring Boot', 'React', 'Node.js', 'Next.js'] },
         { category: 'Data & AI',  items: [ 'Pandas', 'Matplotlib'] },
         { category: 'Tools',      items: ['Git', 'MongoDB', 'PostgreSQL', 'Docker', 'Vite', 'WordPress'] },
     ];
