@@ -1,25 +1,35 @@
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import Projects from './components/Projects.jsx';
 import WorkExperience from './components/WorkExperience.jsx';
-import Footer from './components/Footer.jsx';
 import Contact from './components/Contact.jsx';
+import Footer from './components/Footer.jsx';
 
+function App() {
+    const [theme, setTheme] = useState(() => {
+        return localStorage.getItem('theme') || 'light';
+    });
 
-function App () {
-    
-    const title = "Natnael Tegegne"
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
 
-    return(
+    const toggleTheme = () => {
+        setTheme(prev => prev === 'light' ? 'dark' : 'light');
+    };
+
+    return (
         <>
-          <Navbar />  
-          <Hero />
-          {/* <About /> */}
-          <Projects />
-          <WorkExperience />
-          <Contact />
-          <Footer />
+            <Navbar theme={theme} toggleTheme={toggleTheme} />
+            <Hero />
+            <About />
+            <Projects />
+            <WorkExperience />
+            <Contact />
+            <Footer />
         </>
     );
 }

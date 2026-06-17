@@ -1,77 +1,232 @@
-.work-experience {
-  padding: 100px 20px;
-  background-color: var(--bg-primary);
+/* ─── Experience ─────────────────────────────────────────── */
+.experience-section {
+  padding: 6rem 2rem;
+  background: var(--bg-primary);
 }
 
 .experience-container {
-  max-width: 900px;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
-.experience-container h2 {
-    text-align: center;
-}
-
-.experience-timeline {
+/* Header block */
+.exp-header-block {
+  margin-bottom: 4rem;
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  margin-top: 60px;
+  gap: 0.4rem;
 }
 
-.experience-item {
-  padding: 35px;
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  transition: all 0.3s ease;
+/* Entry list */
+.exp-list {
+  display: flex;
+  flex-direction: column;
 }
 
-.experience-item:hover {
+/* Single entry — 3 columns: year | line | content */
+.exp-entry {
+  display: grid;
+  grid-template-columns: 80px 32px 1fr;
+  gap: 0 1.5rem;
+  position: relative;
+}
+
+/* ── Year column ── */
+.exp-year-col {
+  display: flex;
+  padding-top: 0.15rem;
+  justify-content: flex-end;
+}
+
+.exp-year {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-top: 4px;
+}
+
+/* ── Mid column (the line + dot) ── */
+.exp-mid-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exp-line-top {
+  width: 1px;
+  height: 12px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.exp-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-strong);
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.exp-circle.current {
+  background: var(--accent);
   border-color: var(--accent);
-  transform: translateX(10px);
+  box-shadow: 0 0 0 4px var(--accent-light);
 }
 
-.experience-header {
+.exp-entry:hover .exp-circle {
+  border-color: var(--accent);
+}
+
+.exp-line-bottom {
+  width: 1px;
+  flex: 1;
+  min-height: 36px;
+  background: var(--border);
+}
+
+/* Hide the bottom line on the last entry */
+.exp-entry:last-child .exp-line-bottom {
+  background: transparent;
+}
+
+/* ── Content column ── */
+.exp-content-col {
+  padding-bottom: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.exp-entry:last-child .exp-content-col {
+  padding-bottom: 0;
+}
+
+.exp-top-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 20px;
+  gap: 1rem;
   flex-wrap: wrap;
-  gap: 20px;
 }
 
-.experience-title {
-  font-size: 1.5rem;
+/* Role */
+.exp-role {
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 8px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
-.experience-company {
-  font-size: 1.1rem;
+/* Company */
+.exp-company {
+  font-size: 0.85rem;
   color: var(--accent);
-  font-weight: 600;
+  font-weight: 500;
+  margin-top: 0.2rem;
 }
 
-.experience-period {
-  color: var(--text-secondary);
+/* Period */
+.exp-period-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  padding-top: 0.15rem;
+}
+
+.exp-now-pill {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  background: var(--accent-light);
+  color: var(--accent);
+  border: 1px solid rgba(224, 90, 69, 0.25);
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.exp-period {
+  font-size: 0.8rem;
+  color: var(--text-muted);
   font-weight: 500;
   white-space: nowrap;
 }
 
-.experience-description {
+/* Description */
+.exp-desc {
+  font-size: 0.875rem;
   color: var(--text-secondary);
-  line-height: 1.8;
-  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 640px;
 }
 
-@media (max-width: 768px) {
-  .experience-header {
-    flex-direction: column;
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .experience-section { padding: 4rem 1.25rem; }
+
+  /* Collapse to a simple left-border timeline */
+  .exp-entry {
+    display: block;
+    padding-left: 1.25rem;
+    padding-bottom: 2.25rem;
+    border-left: 2px solid var(--border);
+    position: relative;
   }
 
-  .experience-item {
-    padding: 25px;
+  .exp-entry:last-child {
+    padding-bottom: 0;
+    border-left-color: transparent;
+  }
+
+  /* Dot on the left border */
+  .exp-entry::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 1.5px solid var(--border-strong);
+  }
+
+  /* Hide the grid columns — not needed on mobile */
+  .exp-year-col,
+  .exp-mid-col {
+    display: none;
+  }
+
+  /* Stack period below role on small screens */
+  .exp-top-row {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .exp-period-wrap {
+    padding-top: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  /* Show year inline above the role — sourced from data-year attribute */
+  .exp-content-col::before {
+    content: attr(data-year);
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
+    font-family: 'Courier New', monospace;
   }
 }

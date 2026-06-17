@@ -1,143 +1,176 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
-
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { HiOutlineMail, HiOutlineLocationMarker } from "react-icons/hi";
 import '../styles/Contact.css';
 
 const Contact = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
-    });
-    const [status, setStatus] = useState(''); //to show success/error messages
+    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+    const [status, setStatus] = useState('');
 
-    //Handle typing in the input fields
     const handleChange = (e) => {
-        setFormData({
-           ...formData,
-        [e.target.name]: e.target.value //Updates the specific field being typed in
-        });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    //Handle form submission
     const handleSubmit = async (e) => {
-        e.preventDefault();  //stop the page from reloading
-        setStatus('Sending...');
-
+        e.preventDefault();
+        setStatus('sending');
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
-              method: 'POST', //we are sending data
-              headers: {
-                'Content-Type' : 'application/json',
-              },
-              body: JSON.stringify(formData), //Convert our object to JSON text
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
             });
-
-
             if (response.ok) {
                 setStatus('success');
-                setFormData({ name: '', email: '', message: ''}); //clear the form
+                setFormData({ name: '', email: '', message: '' });
             } else {
-              setStatus('Failed to send message.');
+                setStatus('error');
             }
-        } catch (error) {
+        } catch {
             setStatus('error');
-            console.error('Error sending message: ', error);
         }
-
         setTimeout(() => setStatus(''), 5000);
     };
-    
-    return (
-        <section id="contact" className="get-in-touch">
-            <div className="contact-container">
-                <h2 className="section-title">Get In Touch</h2>
-                
-                <div className="contact-content">
-          <div className="contact-info">
-            <h3 className="contact-info-title">Contact Information</h3>
-            <div className="contact-details">
-              <div className="contact-detail">
-                <FaEnvelope size={45}  className='icon'/>
-                <div className="contact-detail-wrapper">
-                    <strong>Email</strong>
-                        <p>natnaelbereta@gmail.com</p>
-                </div>
-              </div>
-              <div className="contact-detail">
-                <FaLinkedin size={45} className='icon' />
-                <div className="contact-detail-wrapper">
-                    <strong>LinkedIn</strong>
-                        <p>www.linkedin.com/in/natnael-tegegne</p>
-                </div>
-              </div>
-              <div className="contact-detail">
-                <FaGithub size={45}  className='icon' />
-                <div className="contact-detail-wrapper">
-                    <strong>GitHub</strong>
-                        <p>github.com/NatnaelTegegne</p>
-                </div>
-              </div>
-            </div>
-            <div className="contact-status">
-              <strong>Current Status</strong>
-              <p>Send me a message if you're working on something at the intersection of math, tech, ai and finance!</p>
-            </div>
-          </div>
 
-          <div className="contact-form-container">
-            <h3 className="form-title">Send Me a Message</h3>
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows="6"
-                  required
-                ></textarea>
-              </div>
-              <button type="submit" className="submit-btn" disabled={status === 'sending'}>
-                {status === 'sending' ? 'Sending...' : 'Send Message'}
-              </button>
-              {status === 'success' && (
-                <p className="status-message success">Message sent! I will get back to you soon.😊</p>
-              )}
-              {status === 'error' && (
-                <p className="status-message error">Error sending message. Please try again.😔</p>
-              )}
-            </form>
-          </div>
-        </div>
+    const contactDetails = [
+        {
+            icon: <HiOutlineMail size={20} />,
+            label: "Email",
+            value: "natnaelbereta@gmail.com",
+            href: "mailto:natnaelbereta@gmail.com",
+        },
+        {
+            icon: <FaLinkedin size={18} />,
+            label: "LinkedIn",
+            value: "natnael-tegegne",
+            href: "https://www.linkedin.com/in/natnael-tegegne",
+        },
+        {
+            icon: <FaGithub size={18} />,
+            label: "GitHub",
+            value: "NatnaelTegegne",
+            href: "https://github.com/NatnaelTegegne",
+        },
+        {
+            icon: <HiOutlineLocationMarker size={20} />,
+            label: "Location",
+            value: "Pittsburgh, PA",
+            href: null,
+        },
+    ];
+
+    return (
+        <section id="contact" className="contact-section">
+            <div className="contact-container">
+                {/* Header */}
+                <div className="section-header">
+                    <div className="section-num-header">
+                        <span className="section-sym">§</span>
+                        <span className="section-num">04</span>
+                        <span className="section-label">Contact</span>
+                    </div>
+                    <h2 className="section-title">Let's Talk</h2>
+                    <p className="section-subtitle">
+                        Working on something at the intersection of math, tech, AI, and finance?
+                        I'd love to hear from you.
+                    </p>
+                </div>
+
+                <div className="contact-grid">
+                    {/* Info column */}
+                    <div className="contact-info">
+                        <div className="contact-details-list">
+                            {contactDetails.map((item, i) => (
+                                <div key={i} className="contact-detail-item">
+                                    <div className="detail-icon">{item.icon}</div>
+                                    <div>
+                                        <p className="detail-label">{item.label}</p>
+                                        {item.href ? (
+                                            <a
+                                                href={item.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="detail-value link"
+                                            >
+                                                {item.value}
+                                            </a>
+                                        ) : (
+                                            <p className="detail-value">{item.value}</p>
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Form column */}
+                    <div className="contact-form-wrapper">
+                        <form className="contact-form" onSubmit={handleSubmit}>
+                            <div className="form-row">
+                                <div className="form-field">
+                                    <label htmlFor="name" className="form-label">Name</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        placeholder="Your name"
+                                        className="form-input"
+                                        required
+                                    />
+                                </div>
+                                <div className="form-field">
+                                    <label htmlFor="email" className="form-label">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        placeholder="your@email.com"
+                                        className="form-input"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-field">
+                                <label htmlFor="message" className="form-label">Message</label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    placeholder="Tell me about your project or idea..."
+                                    className="form-input form-textarea"
+                                    rows="6"
+                                    required
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="btn-primary submit-btn"
+                                disabled={status === 'sending'}
+                            >
+                                {status === 'sending' ? 'Sending…' : 'Send Message'}
+                            </button>
+
+                            {status === 'success' && (
+                                <p className="form-status success">
+                                    ✓ Message sent! I'll get back to you soon.
+                                </p>
+                            )}
+                            {status === 'error' && (
+                                <p className="form-status error">
+                                    Something went wrong. Please try again.
+                                </p>
+                            )}
+                        </form>
+                    </div>
+                </div>
             </div>
         </section>
-
-    )
+    );
 };
 
 export default Contact;
