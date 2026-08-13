@@ -213,6 +213,55 @@ img {
   transform: translateY(-1px);
 }
 
+/* ─── Screen-reader only ────────────────────────────────── */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Loading skeletons ─────────────────────────────────── */
+/* Shared by the project grid and the blog, so they live here rather than in
+   either component's stylesheet. */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.45; }
+}
+
+.skeleton {
+  pointer-events: none;
+  animation: skeleton-pulse 1.6s ease-in-out infinite;
+}
+
+.skeleton-media {
+  height: 190px;
+  background: var(--bg-secondary);
+}
+
+.skeleton-lines {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.skeleton-lines span,
+.skeleton-line {
+  display: block;
+  height: 0.8rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+}
+
+.skeleton-lines span:nth-child(1) { width: 40%; }
+.skeleton-lines span:nth-child(2) { width: 85%; height: 1.3rem; }
+.skeleton-lines span:nth-child(3) { width: 65%; }
+
 /* ─── Divider ───────────────────────────────────────────── */
 .section-divider {
   width: 100%;

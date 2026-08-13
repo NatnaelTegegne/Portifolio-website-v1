@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 
@@ -10,9 +11,9 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer-inner">
                 <div className="footer-left">
-                    <a href="#home" className="footer-logo">
+                    <Link to="/" className="footer-logo">
                         <span className="logo-bracket">&lt;</span>NT<span className="logo-bracket">/&gt;</span>
-                    </a>
+                    </Link>
                     <p className="footer-tagline">Building at the intersection of CS & Mathematics.</p>
                 </div>
 

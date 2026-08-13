@@ -1,0 +1,24 @@
+{
+  "name": "studio",
+  "version": "1.0.0",
+  "description": "Sanity Studio for the personal portfolio",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "seed": "sanity dataset import ./seed/projects.ndjson production"
+  },
+  "dependencies": {
+    "@sanity/vision": "^6.9.2",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "sanity": "^6.9.2",
+    "styled-components": "^6.1.19"
+  }
+}

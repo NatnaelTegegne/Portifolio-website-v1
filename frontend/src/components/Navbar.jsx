@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 import '../styles/Navbar.css';
+
+const navLinks = [
+    { to: '/#about',      label: 'about'      },
+    { to: '/#projects',   label: 'projects'   },
+    { to: '/#experience', label: 'experience' },
+    { to: '/blog',        label: 'blog'       },
+    { to: '/#contact',    label: 'contact'    },
+];
 
 const Navbar = ({ theme, toggleTheme }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
+    const { pathname } = useLocation();
+
+    const isHome = pathname === '/';
 
     const toggleMenu = () => setIsOpen(prev => !prev);
     const closeMenu = () => setIsOpen(false);
@@ -14,6 +26,9 @@ const Navbar = ({ theme, toggleTheme }) => {
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
+
+            // Section tracking only means anything on the one-page home route.
+            if (!isHome) return;
             const sections = ['home', 'about', 'projects', 'experience', 'contact'];
             let current = 'home';
             for (const id of sections) {
@@ -22,38 +37,40 @@ const Navbar = ({ theme, toggleTheme }) => {
             }
             setActiveSection(current);
         };
+        handleScroll();
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [isHome]);
 
-    const navLinks = [
-        { href: '#about',      label: 'about'      },
-        { href: '#projects',   label: 'projects'   },
-        { href: '#experience', label: 'experience' },
-        { href: '#contact',    label: 'contact'    },
-    ];
+    // Close the mobile menu whenever navigation actually happens.
+    useEffect(() => { setIsOpen(false); }, [pathname]);
+
+    const isActive = (to) => {
+        if (to.startsWith('/#')) return isHome && activeSection === to.slice(2);
+        return pathname === to || pathname.startsWith(`${to}/`);
+    };
 
     return (
         <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
             <div className="navbar-inner">
 
                 {/* Left — code bracket logo */}
-                <a href="#home" className="navbar-logo" onClick={closeMenu}>
+                <Link to="/" className="navbar-logo" onClick={closeMenu}>
                     <span className="logo-bracket">&lt;</span>
                     NT
                     <span className="logo-bracket">/&gt;</span>
-                </a>
+                </Link>
 
                 {/* Center — nav links (desktop) */}
                 <ul className="nav-links-desktop">
                     {navLinks.map(link => (
-                        <li key={link.href}>
-                            <a
-                                href={link.href}
-                                className={`nav-link ${activeSection === link.href.slice(1) ? 'active' : ''}`}
+                        <li key={link.to}>
+                            <Link
+                                to={link.to}
+                                className={`nav-link ${isActive(link.to) ? 'active' : ''}`}
                             >
                                 {link.label}
-                            </a>
+                            </Link>
                         </li>
                     ))}
                 </ul>
@@ -86,10 +103,10 @@ const Navbar = ({ theme, toggleTheme }) => {
             <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
                 <ul className="mobile-nav-links">
                     {navLinks.map(link => (
-                        <li key={link.href}>
-                            <a href={link.href} className="mobile-nav-link" onClick={closeMenu}>
+                        <li key={link.to}>
+                            <Link to={link.to} className="mobile-nav-link" onClick={closeMenu}>
                                 {link.label}
-                            </a>
+                            </Link>
                         </li>
                     ))}
                     <li>
