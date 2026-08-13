@@ -1,42 +1,10 @@
 import '../styles/Projects.css';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { useSanityQuery } from '../hooks/useSanityQuery';
+import { projectsQuery } from '../sanity/queries';
 
 const Projects = () => {
-    const projects = [
-        {
-            title: "Sentinel",
-            description: "An AI-powered Anti-Money Laundering (AML) compliance system that automates adverse media screening for banking customers. Built for Tartan Hacks 2026, the platform uses autonomous AI agents to retrieve customer data, search global news sources, intelligently match identities, and generate structured risk verdicts with confidence scores and citations.",
-            tags: ["AI Agents", "FastAPI", "Next.js", "MCP", "LLMs", "FinTech"],
-            codeLink: "https://github.com/vijay-raghav/tart-hacks",
-            demoLink: "https://sentinel-pi-steel.vercel.app/",
-            staticDemo: null,
-            featured: true,
-        },
-        {
-            title: "Panther AI Club Website",
-            description: "Planned, designed, and built the official website for Panther AI Club at the University of Pittsburgh. The platform manages member data, supports registration, showcases events, blogs, and resources, and provides admin access for club activities.",
-            tags: ["MongoDB", "Express", "React", "Node.js"],
-            codeLink: null,
-            demoLink: "https://pitt-panther-ai-club.vercel.app/",
-            staticDemo: null,
-        },
-        {
-            title: "Piky-Park",
-            description: "Real-time parking spot detection system built for NexHacks 2026. Uses PyTorch (ResNet50) for computer vision, Flask for the backend, and React (Vite) for the admin dashboard.",
-            tags: ["PyTorch", "Flask", "React", "Node.js"],
-            codeLink: "https://github.com/NatnaelTegegne/piky-park",
-            demoLink: null,
-            staticDemo: "https://www.youtube.com/embed/Lu5FTQa-pDQ?si=nmSQLnEAtO4rwwsJ&start=18",
-        },
-        {
-            title: "Best Neighborhood in Pittsburgh",
-            description: "A data-driven analysis to determine the best neighborhood for families in Pittsburgh using datasets from WPRDC. Worked in a team of three, handling data analysis, visualization, and collaborative research.",
-            tags: ["Python", "Pandas", "Matplotlib"],
-            codeLink: "https://github.com/NatnaelTegegne/The-best-neighborhood-in-Pittsburgh",
-            demoLink: null,
-            staticDemo: null,
-        },
-    ];
+    const { data: projects, loading, error } = useSanityQuery(projectsQuery);
 
     return (
         <section id="projects" className="projects-section">
@@ -54,65 +22,96 @@ const Projects = () => {
                     </p>
                 </div>
 
-                {/* Grid */}
-                <div className="projects-grid">
-                    {projects.map((project, index) => (
-                        <article key={index} className={`project-card ${project.featured ? 'featured' : ''}`}>
-                            {/* Embed preview */}
-                            {(project.demoLink || project.staticDemo) && (
-                                <div className="project-embed">
-                                    <iframe
-                                        src={project.staticDemo || project.demoLink}
-                                        title={project.title}
-                                        loading="lazy"
-                                        frameBorder="0"
-                                        allowFullScreen
-                                    />
-                                    <div className="embed-overlay" />
-                                </div>
-                            )}
-
-                            {/* Card body */}
-                            <div className="project-body">
-                                <div className="project-meta">
-                                    <h3 className="project-title">{project.title}</h3>
-                                    <div className="project-links">
-                                        {project.codeLink && (
-                                            <a
-                                                href={project.codeLink}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="project-icon-link"
-                                                aria-label="View code on GitHub"
-                                            >
-                                                <FaGithub size={17} />
-                                            </a>
-                                        )}
-                                        {project.demoLink && (
-                                            <a
-                                                href={project.demoLink}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="project-icon-link"
-                                                aria-label="Visit live demo"
-                                            >
-                                                <FaExternalLinkAlt size={15} />
-                                            </a>
-                                        )}
-                                    </div>
-                                </div>
-
-                                <p className="project-description">{project.description}</p>
-
-                                <div className="project-tags">
-                                    {project.tags.map((tag, i) => (
-                                        <span key={i} className="tag">{tag}</span>
-                                    ))}
+                {loading && (
+                    <div className="projects-grid">
+                        {[0, 1].map((i) => (
+                            <div key={i} className="project-card skeleton" aria-hidden="true">
+                                <div className="skeleton-media" />
+                                <div className="skeleton-lines">
+                                    <span /><span /><span />
                                 </div>
                             </div>
-                        </article>
-                    ))}
-                </div>
+                        ))}
+                        <p className="visually-hidden" role="status">Loading projects…</p>
+                    </div>
+                )}
+
+                {error && (
+                    <p className="projects-empty">
+                        Couldn't load projects right now. Please try again in a moment.
+                    </p>
+                )}
+
+                {!loading && !error && projects?.length === 0 && (
+                    <p className="projects-empty">No projects published yet.</p>
+                )}
+
+                {/* Grid */}
+                {!loading && projects?.length > 0 && (
+                    <div className="projects-grid">
+                        {projects.map((project) => (
+                            <article
+                                key={project._id}
+                                className={`project-card ${project.featured ? 'featured' : ''}`}
+                            >
+                                {/* Embed preview */}
+                                {(project.demoLink || project.staticDemo) && (
+                                    <div className="project-embed">
+                                        <iframe
+                                            src={project.staticDemo || project.demoLink}
+                                            title={project.title}
+                                            loading="lazy"
+                                            frameBorder="0"
+                                            allowFullScreen
+                                        />
+                                        <div className="embed-overlay" />
+                                    </div>
+                                )}
+
+                                {/* Card body */}
+                                <div className="project-body">
+                                    <div className="project-meta">
+                                        <h3 className="project-title">{project.title}</h3>
+                                        <div className="project-links">
+                                            {project.codeLink && (
+                                                <a
+                                                    href={project.codeLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="project-icon-link"
+                                                    aria-label={`View ${project.title} code on GitHub`}
+                                                >
+                                                    <FaGithub size={17} />
+                                                </a>
+                                            )}
+                                            {project.demoLink && (
+                                                <a
+                                                    href={project.demoLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="project-icon-link"
+                                                    aria-label={`Visit the ${project.title} live demo`}
+                                                >
+                                                    <FaExternalLinkAlt size={15} />
+                                                </a>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    <p className="project-description">{project.description}</p>
+
+                                    {project.tags?.length > 0 && (
+                                        <div className="project-tags">
+                                            {project.tags.map((tag, i) => (
+                                                <span key={i} className="tag">{tag}</span>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                )}
             </div>
         </section>
     );

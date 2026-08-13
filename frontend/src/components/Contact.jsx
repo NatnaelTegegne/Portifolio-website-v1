@@ -14,18 +14,22 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('sending');
+
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
+            // The endpoint is a Google Apps Script, which sends no CORS headers,
+            // so this has to be a no-cors request. That makes the response
+            // opaque: status is always 0 and `ok` is always false, even on
+            // success. A resolved promise means the request was delivered, so
+            // that — not the response — is what we treat as success.
+            // Note: no-cors also strips the Content-Type header, so there is no
+            // point setting it here; the script receives the body as text.
+            await fetch(`${import.meta.env.VITE_API_URL}`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                mode: 'no-cors',
                 body: JSON.stringify(formData),
             });
-            if (response.ok) {
-                setStatus('success');
-                setFormData({ name: '', email: '', message: '' });
-            } else {
-                setStatus('error');
-            }
+            setStatus('success');
+            setFormData({ name: '', email: '', message: '' });
         } catch {
             setStatus('error');
         }
