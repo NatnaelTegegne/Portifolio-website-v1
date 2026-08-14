@@ -192,20 +192,32 @@
 }
 
 /* ─── Card link into the case study ──────────────────────── */
+/* Styled to match .project-icon-link (the GitHub / external-link buttons)
+   so the card's actions read as one set. `align-self` keeps it hugging its
+   text — .project-body is a stretch flex column, which would otherwise
+   pull the button to full card width. */
 .project-case-link {
   display: inline-flex;
+  align-self: flex-start;
   align-items: center;
-  gap: 0.4rem;
-  margin-top: 0.6rem;
-  font-family: 'Courier New', monospace;
-  font-size: 0.78rem;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+  padding: 0.55rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
   font-weight: 600;
-  color: var(--accent);
+  letter-spacing: 0.01em;
   transition: var(--transition);
 }
 
 .project-case-link:hover {
-  gap: 0.7rem;
+  border-color: var(--accent);
+  background: var(--accent-light);
+  color: var(--accent);
 }
 
 .project-title-link {
