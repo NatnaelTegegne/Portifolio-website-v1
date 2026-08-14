@@ -1,5 +1,7 @@
 import '../styles/Projects.css';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import '../styles/ProjectDetail.css';
+import { Link } from 'react-router-dom';
+import { FaGithub, FaExternalLinkAlt, FaArrowRight } from 'react-icons/fa';
 import { useSanityQuery } from '../hooks/useSanityQuery';
 import { projectsQuery } from '../sanity/queries';
 
@@ -71,7 +73,21 @@ const Projects = () => {
                                 {/* Card body */}
                                 <div className="project-body">
                                     <div className="project-meta">
-                                        <h3 className="project-title">{project.title}</h3>
+                                        {/* The card can't be one big link — it already
+                                            contains anchors and an iframe. The title and
+                                            the footer link carry the navigation instead. */}
+                                        <h3 className="project-title">
+                                            {project.hasCaseStudy ? (
+                                                <Link
+                                                    to={`/projects/${project.slug}`}
+                                                    className="project-title-link"
+                                                >
+                                                    {project.title}
+                                                </Link>
+                                            ) : (
+                                                project.title
+                                            )}
+                                        </h3>
                                         <div className="project-links">
                                             {project.codeLink && (
                                                 <a
@@ -106,6 +122,15 @@ const Projects = () => {
                                                 <span key={i} className="tag">{tag}</span>
                                             ))}
                                         </div>
+                                    )}
+
+                                    {project.hasCaseStudy && (
+                                        <Link
+                                            to={`/projects/${project.slug}`}
+                                            className="project-case-link"
+                                        >
+                                            Read the case study <FaArrowRight size={11} />
+                                        </Link>
                                     )}
                                 </div>
                             </article>

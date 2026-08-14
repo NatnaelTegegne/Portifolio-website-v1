@@ -62,18 +62,55 @@ export const categoriesQuery = groq`
     }
 `;
 
+const VISIBLE_PROJECT = `_type == "project" && !(_id in path("drafts.**")) && hidden != true`;
+
 /** Portfolio projects, in display order. */
 export const projectsQuery = groq`
-  *[_type == "project" && !(_id in path("drafts.**")) && hidden != true]
-    | order(order asc, publishedAt desc) {
-      _id,
-      title,
-      "slug": slug.current,
-      description,
-      tags,
-      codeLink,
-      demoLink,
-      staticDemo,
-      featured
-    }
+  *[${VISIBLE_PROJECT}] | order(order asc, publishedAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    tags,
+    codeLink,
+    demoLink,
+    staticDemo,
+    featured,
+    // Only projects with a written case study get a link to one.
+    "hasCaseStudy": defined(body) && count(body) > 0
+  }
+`;
+
+/** One project's full case study, with neighbours for prev/next navigation. */
+export const projectBySlugQuery = groq`
+  *[${VISIBLE_PROJECT} && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    tags,
+    codeLink,
+    demoLink,
+    staticDemo,
+    coverImage,
+    role,
+    timeline,
+    team,
+    status,
+    highlights,
+    metrics,
+    techStack,
+    publishedAt,
+    body[] {
+      ...,
+      _type == "image" => { ..., asset-> },
+      markDefs[] { ... }
+    },
+    // The grid is ordered by \`order\` ascending, so "previous" is the
+    // project above this one in that list and "next" is the one below.
+    "previous": *[${VISIBLE_PROJECT} && defined(body) && order < ^.order]
+      | order(order desc)[0] { title, "slug": slug.current },
+    "next": *[${VISIBLE_PROJECT} && defined(body) && order > ^.order]
+      | order(order asc)[0] { title, "slug": slug.current }
+  }
 `;
