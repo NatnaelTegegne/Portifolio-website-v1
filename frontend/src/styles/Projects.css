@@ -148,6 +148,17 @@
   margin-top: auto;
 }
 
+/* "View all N projects" below the featured grid on the home page */
+.projects-view-all {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.projects-view-all .btn-secondary {
+  background: var(--bg-card);
+}
+
 /* Loading / empty states — base skeleton rules live in index.css */
 .projects-empty {
   padding: 3rem 0;

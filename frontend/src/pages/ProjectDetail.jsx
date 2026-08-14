@@ -51,7 +51,7 @@ const ProjectDetail = () => {
                             ? 'Something went wrong loading this project.'
                             : "This project doesn't exist, or it hasn't been published yet."}
                     </p>
-                    <Link to="/#projects" className="btn-secondary post-back-btn">
+                    <Link to="/projects" className="btn-secondary post-back-btn">
                         <FaArrowLeft size={12} /> Back to all projects
                     </Link>
                 </div>
@@ -65,7 +65,7 @@ const ProjectDetail = () => {
     return (
         <main className="blog-page">
             <article className="case-container">
-                <Link to="/#projects" className="post-back">
+                <Link to="/projects" className="post-back">
                     <FaArrowLeft size={11} /> all projects
                 </Link>
 

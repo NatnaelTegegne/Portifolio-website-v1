@@ -64,20 +64,39 @@ export const categoriesQuery = groq`
 
 const VISIBLE_PROJECT = `_type == "project" && !(_id in path("drafts.**")) && hidden != true`;
 
-/** Portfolio projects, in display order. */
+const PROJECT_CARD_FIELDS = `
+  _id,
+  title,
+  "slug": slug.current,
+  description,
+  tags,
+  codeLink,
+  demoLink,
+  staticDemo,
+  featured,
+  // Only projects with a written case study get a link to one.
+  "hasCaseStudy": defined(body) && count(body) > 0
+`;
+
+/** Every visible project, in display order. Powers the /projects index. */
 export const projectsQuery = groq`
   *[${VISIBLE_PROJECT}] | order(order asc, publishedAt desc) {
-    _id,
-    title,
-    "slug": slug.current,
-    description,
-    tags,
-    codeLink,
-    demoLink,
-    staticDemo,
-    featured,
-    // Only projects with a written case study get a link to one.
-    "hasCaseStudy": defined(body) && count(body) > 0
+    ${PROJECT_CARD_FIELDS}
+  }
+`;
+
+/**
+ * The home page section: featured projects only, plus a total count so the
+ * "view all" link can be hidden when there's nothing more to show. Both come
+ * back in one round trip.
+ */
+export const featuredProjectsQuery = groq`
+  {
+    "projects": *[${VISIBLE_PROJECT} && featured == true]
+      | order(order asc, publishedAt desc) {
+        ${PROJECT_CARD_FIELDS}
+      },
+    "total": count(*[${VISIBLE_PROJECT}])
   }
 `;
 
