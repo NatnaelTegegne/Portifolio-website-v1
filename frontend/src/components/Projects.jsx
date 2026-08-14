@@ -1,12 +1,18 @@
 import '../styles/Projects.css';
 import '../styles/ProjectDetail.css';
 import { Link } from 'react-router-dom';
-import { FaGithub, FaExternalLinkAlt, FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 import { useSanityQuery } from '../hooks/useSanityQuery';
-import { projectsQuery } from '../sanity/queries';
+import { featuredProjectsQuery } from '../sanity/queries';
+import ProjectCard, { ProjectCardSkeleton } from './ProjectCard.jsx';
 
 const Projects = () => {
-    const { data: projects, loading, error } = useSanityQuery(projectsQuery);
+    const { data, loading, error } = useSanityQuery(featuredProjectsQuery);
+
+    const projects = data?.projects ?? [];
+    const total = data?.total ?? 0;
+    // Nothing to browse to if the home page already shows everything.
+    const showViewAll = total > projects.length;
 
     return (
         <section id="projects" className="projects-section">
@@ -26,14 +32,7 @@ const Projects = () => {
 
                 {loading && (
                     <div className="projects-grid">
-                        {[0, 1].map((i) => (
-                            <div key={i} className="project-card skeleton" aria-hidden="true">
-                                <div className="skeleton-media" />
-                                <div className="skeleton-lines">
-                                    <span /><span /><span />
-                                </div>
-                            </div>
-                        ))}
+                        {[0, 1].map((i) => <ProjectCardSkeleton key={i} />)}
                         <p className="visually-hidden" role="status">Loading projects…</p>
                     </div>
                 )}
@@ -44,97 +43,42 @@ const Projects = () => {
                     </p>
                 )}
 
-                {!loading && !error && projects?.length === 0 && (
-                    <p className="projects-empty">No projects published yet.</p>
+                {/* No featured projects is a content problem, not an error — point
+                    at the full index rather than showing an empty section. */}
+                {!loading && !error && projects.length === 0 && (
+                    <p className="projects-empty">
+                        {total > 0 ? (
+                            <>
+                                No featured projects yet.{' '}
+                                <Link to="/projects" className="pt-link">See all {total} projects</Link>.
+                            </>
+                        ) : (
+                            'No projects published yet.'
+                        )}
+                    </p>
                 )}
 
                 {/* Grid */}
-                {!loading && projects?.length > 0 && (
+                {!loading && projects.length > 0 && (
                     <div className="projects-grid">
-                        {projects.map((project) => (
-                            <article
+                        {projects.map((project, index) => (
+                            <ProjectCard
                                 key={project._id}
-                                className={`project-card ${project.featured ? 'featured' : ''}`}
-                            >
-                                {/* Embed preview */}
-                                {(project.demoLink || project.staticDemo) && (
-                                    <div className="project-embed">
-                                        <iframe
-                                            src={project.staticDemo || project.demoLink}
-                                            title={project.title}
-                                            loading="lazy"
-                                            frameBorder="0"
-                                            allowFullScreen
-                                        />
-                                        <div className="embed-overlay" />
-                                    </div>
-                                )}
-
-                                {/* Card body */}
-                                <div className="project-body">
-                                    <div className="project-meta">
-                                        {/* The card can't be one big link — it already
-                                            contains anchors and an iframe. The title and
-                                            the footer link carry the navigation instead. */}
-                                        <h3 className="project-title">
-                                            {project.hasCaseStudy ? (
-                                                <Link
-                                                    to={`/projects/${project.slug}`}
-                                                    className="project-title-link"
-                                                >
-                                                    {project.title}
-                                                </Link>
-                                            ) : (
-                                                project.title
-                                            )}
-                                        </h3>
-                                        <div className="project-links">
-                                            {project.codeLink && (
-                                                <a
-                                                    href={project.codeLink}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="project-icon-link"
-                                                    aria-label={`View ${project.title} code on GitHub`}
-                                                >
-                                                    <FaGithub size={17} />
-                                                </a>
-                                            )}
-                                            {project.demoLink && (
-                                                <a
-                                                    href={project.demoLink}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="project-icon-link"
-                                                    aria-label={`Visit the ${project.title} live demo`}
-                                                >
-                                                    <FaExternalLinkAlt size={15} />
-                                                </a>
-                                            )}
-                                        </div>
-                                    </div>
-
-                                    <p className="project-description">{project.description}</p>
-
-                                    {project.tags?.length > 0 && (
-                                        <div className="project-tags">
-                                            {project.tags.map((tag, i) => (
-                                                <span key={i} className="tag">{tag}</span>
-                                            ))}
-                                        </div>
-                                    )}
-
-                                    {project.hasCaseStudy && (
-                                        <Link
-                                            to={`/projects/${project.slug}`}
-                                            className="project-case-link"
-                                        >
-                                            Read the case study <FaArrowRight size={11} />
-                                        </Link>
-                                    )}
-                                </div>
-                            </article>
+                                project={project}
+                                // Only the first card gets the full-width treatment.
+                                // Every card here is featured, so keying off
+                                // project.featured would make them all wide.
+                                wide={index === 0 && projects.length % 2 === 1}
+                            />
                         ))}
+                    </div>
+                )}
+
+                {!loading && !error && showViewAll && (
+                    <div className="projects-view-all">
+                        <Link to="/projects" className="btn-secondary">
+                            View all {total} projects <FaArrowRight size={12} />
+                        </Link>
                     </div>
                 )}
             </div>
