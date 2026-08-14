@@ -4,6 +4,7 @@ import { useSanityQuery } from '../hooks/useSanityQuery';
 import { projectBySlugQuery } from '../sanity/queries';
 import { imageUrl } from '../sanity/image';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
+import { EMBED_ALLOW } from '../utils/embed';
 import PortableText from '../components/PortableText.jsx';
 import '../styles/Blog.css';
 import '../styles/ProjectDetail.css';
@@ -197,6 +198,8 @@ const ProjectDetail = () => {
                             src={project.staticDemo}
                             title={`${project.title} walkthrough`}
                             loading="lazy"
+                            allow={EMBED_ALLOW}
+                            referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen
                         />
                     </figure>

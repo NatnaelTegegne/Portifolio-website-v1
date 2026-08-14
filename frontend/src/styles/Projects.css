@@ -63,6 +63,13 @@
   pointer-events: none;
 }
 
+/* Video walkthroughs are meant to be watched in place, so they keep their
+   clicks — the play button and the "Watch on YouTube" link both live inside
+   the iframe. Live-site previews stay inert (see .embed-overlay). */
+.project-embed.is-video iframe {
+  pointer-events: auto;
+}
+
 .embed-overlay {
   position: absolute;
   inset: 0;
