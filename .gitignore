@@ -13,3 +13,7 @@ build/
 
 # System files
 .DS_Store
+
+# Personal notes (local only)
+SANITY-CORS-NOTES.md
+CASE-STUDIES.md
