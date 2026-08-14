@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import BlogList from "./pages/BlogList.jsx";
 import BlogPost from "./pages/BlogPost.jsx";
+import ProjectDetail from "./pages/ProjectDetail.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import './index.css';
 
@@ -21,6 +22,7 @@ root.render(
                     <Route index element={<Home />} />
                     <Route path="blog" element={<BlogList />} />
                     <Route path="blog/:slug" element={<BlogPost />} />
+                    <Route path="projects/:slug" element={<ProjectDetail />} />
                     <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>
