@@ -1,7 +1,7 @@
-import imageUrlBuilder from '@sanity/image-url';
+import { createImageUrlBuilder } from '@sanity/image-url';
 import { client, isSanityConfigured } from './client';
 
-const builder = isSanityConfigured ? imageUrlBuilder(client) : null;
+const builder = isSanityConfigured ? createImageUrlBuilder(client) : null;
 
 /**
  * Turns a Sanity image reference into a CDN URL.
