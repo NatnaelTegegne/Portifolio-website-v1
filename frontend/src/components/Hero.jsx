@@ -69,7 +69,7 @@ const Hero = () => {
               <FaLinkedin size={18} />
             </a>
             <a
-              href="https://www.instagram.com/nattynatharious/"
+              href="https://www.instagram.com/natnael.dev"
               target="_blank"
               className="footer-social-link"
               aria-label="Email"
@@ -77,7 +77,7 @@ const Hero = () => {
               <FaInstagram size={20} />
             </a>
             <a
-              href="https://www.tiktok.com/@nattynatharious"
+              href="https://www.tiktok.com/@natnael.dev"
               target="_blank"
               className="footer-social-link"
               aria-label="Email"

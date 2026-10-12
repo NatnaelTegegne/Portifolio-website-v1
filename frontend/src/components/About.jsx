@@ -78,19 +78,18 @@ const About = () => {
                         <h2 className="section-title">A bit about me</h2>
 
                         <p className="about-para">
-                            I'm a Third-year CS &amp; Mathematics student at the{' '}
-                            <span className="chip chip-dark">University of Pittsburgh.</span>{' '}
-                           I'm passionate about building systems that make a real-world impact, the kind of software that solves actual problems for actual people. 
-                           I'm just as interested in how AI can be used to solve those problems, both as a tool that makes systems smarter and as something I want to understand deeply. 
-                           I'm looking for opportunities to build that kind of work alongside people who care about doing it well.
+                            I'm a third-year CS &amp; Mathematics student at the{' '}
+                            <span className="chip chip-dark">University of Pittsburgh</span>. My focus is
+                            building systems that solve real problems for real people, mostly on the
+                            backend and infrastructure side. AI runs through most of that work, both as a
+                            tool that makes systems smarter and as something I want to understand deeply.
+                            Now I want to do that kind of work alongside people who care about doing it well.
                         </p>
-
                         <p className="about-para">
-                            I've built everything from AI-powered compliance systems to
-                            community tutoring platforms. Right now I'm looking for{' '}
+                            So far I've built everything from AI-powered compliance systems to workflow
+                            automation tools. Right now I'm looking for{' '}
                             <span className="chip chip-accent">internships</span>{' '}
-                            where I can work on hard problems at the intersection of
-                            technology, data, and finance.
+                            where I can work on hard problems across technology, data, and finance.
                         </p>
 
                     

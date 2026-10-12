@@ -24,10 +24,10 @@ const Footer = () => {
                     <a href="https://www.linkedin.com/in/natnael-tegegne" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn">
                         <FaLinkedin size={18} />
                     </a>
-                    <a href="https://www.instagram.com/nattynatharious/" target="_blank" className="footer-social-link" aria-label="Email">
+                    <a href="https://www.instagram.com/natnael.dev" target="_blank" className="footer-social-link" aria-label="Email">
                         <FaInstagram size={20} />
                     </a>
-                    <a href="https://www.tiktok.com/@nattynatharious" target="_blank" className="footer-social-link" aria-label="Email">
+                    <a href="https://www.tiktok.com/@natnael.dev" target="_blank" className="footer-social-link" aria-label="Email">
                         <FaTiktok size={20} />
                     </a>
                     <a href="https://www.youtube.com/@nattyNatharious" target="_blank" className="footer-social-link" aria-label="Email">
