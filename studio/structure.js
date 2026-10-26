@@ -23,6 +23,13 @@ export const structure = (S) =>
                             { field: 'publishedAt', direction: 'desc' },
                         ])
                 ),
+            S.listItem()
+                .title('Experience')
+                .child(
+                    S.documentTypeList('experience')
+                        .title('Experience')
+                        .defaultOrdering([{ field: 'startDate', direction: 'desc' }])
+                ),
             S.divider(),
             S.documentTypeListItem('category').title('Categories'),
             S.documentTypeListItem('author').title('Authors'),

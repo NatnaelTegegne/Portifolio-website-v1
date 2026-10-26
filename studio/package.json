@@ -12,7 +12,8 @@
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "seed": "sanity dataset import ./seed/projects.ndjson production"
+    "seed": "sanity dataset import ./seed/projects.ndjson production",
+    "seed:experience": "sanity dataset import ./seed/experience.ndjson production"
   },
   "dependencies": {
     "@sanity/vision": "^6.9.2",

@@ -133,3 +133,20 @@ export const projectBySlugQuery = groq`
       | order(order asc)[0] { title, "slug": slug.current }
   }
 `;
+
+/**
+ * Every visible role, newest first. A role with no end date is the one you
+ * still hold, so `current` is derived rather than stored.
+ */
+export const experienceQuery = groq`
+  *[_type == "experience" && !(_id in path("drafts.**")) && hidden != true]
+    | order(startDate desc) {
+      _id,
+      title,
+      company,
+      description,
+      startDate,
+      endDate,
+      "current": !defined(endDate)
+    }
+`;

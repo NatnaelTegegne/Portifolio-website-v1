@@ -129,19 +129,34 @@ The seed leaves `publishedAt` empty since the original dates weren't recorded â€
 set them in the Studio if you want date-based ordering, otherwise the `order`
 field controls the sequence.
 
+## Seeding the experience timeline
+
+The roles that used to be hardcoded in `WorkExperience.jsx` are in
+`seed/experience.ndjson` (the UniWise entry comes in with **Hide from site**
+checked, as it was commented out before). Import them once:
+
+```bash
+npm run seed:experience
+```
+
+These have no fixed `_id`s, so running it again creates duplicates. Delete the
+old ones in the Studio first if you need to re-import.
+
 ## Content model
 
 | Type       | Purpose                                                   |
 | ---------- | --------------------------------------------------------- |
 | `post`     | Blog posts. Rendered at `/blog` and `/blog/<slug>`.        |
 | `project`  | Portfolio projects. Rendered in the Projects section.      |
+| `experience` | Roles in the Experience timeline. No end date = current. |
 | `category` | Tags for posts. Drives the filter pills on `/blog`.        |
 | `author`   | Post bylines.                                             |
 
 Two scheduling behaviours are built into the queries:
 
 - A post with a **future `publishedAt`** stays hidden until that time passes.
-- A project with **`hidden` checked** stays in the Studio but off the site.
+- A project or experience entry with **`hidden` checked** stays in the Studio
+  but off the site.
 
 Drafts are excluded from the site automatically â€” content appears only after you
 hit **Publish**.

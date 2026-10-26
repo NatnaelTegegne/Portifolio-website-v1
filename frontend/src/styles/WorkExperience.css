@@ -17,6 +17,14 @@
   gap: 0.4rem;
 }
 
+/* Error / empty state */
+.exp-empty {
+  padding: 3rem 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
 /* Entry list */
 .exp-list {
   display: flex;
