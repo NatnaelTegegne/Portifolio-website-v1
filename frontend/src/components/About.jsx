@@ -1,9 +1,12 @@
 import '../styles/About.css';
 import {
-    SiPython, SiJavascript, SiCplusplus, SiMysql,
+    SiPython, SiJavascript, SiTypescript, SiC, SiMysql, SiHtml5,
     SiReact, SiNodedotjs, SiExpress, SiFlask, SiFastapi, SiNextdotjs,
+    SiPydantic, SiTailwindcss,
     SiPytorch, SiPandas, SiPlotly, SiLangchain,
-    SiGit, SiMongodb, SiPostgresql, SiDocker, SiVite, SiWordpress, SiSpringboot,
+    SiAmazondynamodb, SiSupabase, SiFirebase,
+    SiAwslambda, SiAmazonapigateway, SiAmazons3, SiAmazonwebservices, SiAmazoniam, SiVercel,
+    SiGit, SiGithubactions, SiMongodb, SiPostgresql, SiDocker, SiVite, SiWordpress, SiSpringboot,
 } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa';
 
@@ -12,9 +15,11 @@ const SKILL_ICON_MAP = {
     /* ── Languages ── */
     'Python':       { Icon: SiPython,      label: 'Python',     color: '#3776AB' },
     'JavaScript':   { Icon: SiJavascript,  label: 'JavaScript', color: '#F7DF1E' },
+    'TypeScript':   { Icon: SiTypescript,  label: 'TypeScript', color: '#3178C6' },
     'Java':         { Icon: FaJava,        label: 'Java',       color: '#007396' },
-    // 'C / C++':      { Icon: SiCplusplus,   label: 'C / C++',   color: '#00599C' },
+    'C':            { Icon: SiC,           label: 'C',          color: '#A8B9CC' },
     'SQL':          { Icon: SiMysql,       label: 'SQL',        color: '#4479A1' },
+    'HTML/CSS':     { Icon: SiHtml5,       label: 'HTML/CSS',   color: '#E34F26' },
 
     /* ── Frameworks ── */
     'React':        { Icon: SiReact,       label: 'React',      color: '#61DAFB' },
@@ -24,6 +29,8 @@ const SKILL_ICON_MAP = {
     'FastAPI':      { Icon: SiFastapi,     label: 'FastAPI',    color: '#009688' },
     'Next.js':      { Icon: SiNextdotjs,   label: 'Next.js',    color: '#888888' },
     'Spring Boot':  { Icon: SiSpringboot, label: 'Spring Boot', color: '#6DB33F' },
+    'Pydantic AI':  { Icon: SiPydantic,    label: 'Pydantic AI', color: '#E92063' },
+    'Tailwind CSS': { Icon: SiTailwindcss, label: 'Tailwind CSS', color: '#06B6D4' },
 
     /* ── Data & AI ── */
     'PyTorch':      { Icon: SiPytorch,     label: 'PyTorch',    color: '#EE4C2C' },
@@ -31,10 +38,26 @@ const SKILL_ICON_MAP = {
     'Matplotlib':   { Icon: SiPlotly,      label: 'Matplotlib', color: '#3F4F75' },
     'LangChain':    { Icon: SiLangchain,   label: 'LangChain',  color: '#1C3C3C' },
 
+    /* ── Databases ── */
+    'PostgreSQL':   { Icon: SiPostgresql,  label: 'PostgreSQL', color: '#4169E1' },
+    'MongoDB':      { Icon: SiMongodb,     label: 'MongoDB',    color: '#47A248' },
+    'DynamoDB':     { Icon: SiAmazondynamodb, label: 'DynamoDB', color: '#4053D6' },
+    'Supabase':     { Icon: SiSupabase,    label: 'Supabase',   color: '#3FCF8E' },
+    'Firebase Firestore': { Icon: SiFirebase, label: 'Firebase Firestore', color: '#FFCA28' },
+
+    /* ── Cloud ── */
+    // Bedrock and CDK have no icon of their own, so they share the AWS mark.
+    'AWS Lambda':   { Icon: SiAwslambda,   label: 'AWS Lambda', color: '#FF9900' },
+    'API Gateway':  { Icon: SiAmazonapigateway, label: 'API Gateway', color: '#FF4F8B' },
+    'S3':           { Icon: SiAmazons3,    label: 'S3',         color: '#569A31' },
+    'Bedrock':      { Icon: SiAmazonwebservices, label: 'Bedrock', color: '#FF9900' },
+    'CDK':          { Icon: SiAmazonwebservices, label: 'CDK',  color: '#FF9900' },
+    'IAM':          { Icon: SiAmazoniam,   label: 'IAM',        color: '#DD344C' },
+    'Vercel':       { Icon: SiVercel,      label: 'Vercel',     color: '#888888' },
+
     /* ── Tools ── */
     'Git':          { Icon: SiGit,         label: 'Git',        color: '#F05032' },
-    'MongoDB':      { Icon: SiMongodb,     label: 'MongoDB',    color: '#47A248' },
-    'PostgreSQL':   { Icon: SiPostgresql,  label: 'PostgreSQL', color: '#4169E1' },
+    'GitHub Actions': { Icon: SiGithubactions, label: 'GitHub Actions', color: '#2088FF' },
     'Docker':       { Icon: SiDocker,      label: 'Docker',     color: '#2496ED' },
     'Vite':         { Icon: SiVite,        label: 'Vite',       color: '#646CFF' },
     'WordPress':    { Icon: SiWordpress,   label: 'WordPress',  color: '#21759B' },
@@ -55,10 +78,12 @@ const SkillTag = ({ skill }) => {
 
 const About = () => {
     const skills = [
-        { category: 'Languages',  items: ['Python', 'JavaScript', 'Java', 'SQL'] },
-        { category: 'Frameworks', items: ['React', 'Node.js', 'Next.js', 'Spring Boot'] },
+        { category: 'Languages',  items: ['Python', 'JavaScript', 'TypeScript', 'Java', 'C', 'SQL', 'HTML/CSS'] },
+        { category: 'Frameworks', items: ['React', 'Node.js', 'Next.js', 'Spring Boot', 'FastAPI', 'Pydantic AI', 'Tailwind CSS'] },
         { category: 'Data & AI',  items: [ 'Pandas', 'Matplotlib'] },
-        { category: 'Tools',      items: ['Git', 'MongoDB', 'PostgreSQL', 'Docker', 'Vite', 'WordPress'] },
+        { category: 'Databases',  items: ['PostgreSQL', 'MongoDB', 'DynamoDB', 'Supabase', 'Firebase Firestore'] },
+        { category: 'Cloud',      items: ['AWS Lambda', 'API Gateway', 'S3', 'Bedrock', 'CDK', 'IAM', 'Vercel'] },
+        { category: 'Tools',      items: ['Git', 'GitHub Actions', 'CI/CD', 'Docker', 'Vite', 'WordPress'] },
     ];
 
     return (
