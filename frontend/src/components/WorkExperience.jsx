@@ -67,7 +67,15 @@ const WorkExperience = () => {
                                             <span className="exp-period">{exp.period}</span>
                                         </div>
                                     </div>
-                                    <p className="exp-desc">{exp.description}</p>
+                                    {exp.highlights?.length > 0 ? (
+                                        <ul className="exp-desc exp-bullets">
+                                            {exp.highlights.map((point, i) => (
+                                                <li key={i}>{point}</li>
+                                            ))}
+                                        </ul>
+                                    ) : (
+                                        exp.description && <p className="exp-desc">{exp.description}</p>
+                                    )}
                                 </div>
                             </div>
                         ))}

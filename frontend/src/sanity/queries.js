@@ -144,6 +144,8 @@ export const experienceQuery = groq`
       _id,
       title,
       company,
+      highlights,
+      // Legacy paragraph, shown only for entries with no highlights yet.
       description,
       startDate,
       endDate,

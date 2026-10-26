@@ -20,11 +20,30 @@ export const experience = defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
-            name: 'description',
+            name: 'highlights',
             title: 'Description',
+            type: 'array',
+            of: [{ type: 'string' }],
+            description: 'One point per item. Each renders as its own bullet, in this order.',
+            validation: (Rule) =>
+                Rule.custom((highlights, { document }) => {
+                    // Older entries may still carry the paragraph field below.
+                    if (highlights?.length || document?.description) return true;
+                    return 'Add at least one point.';
+                }),
+        }),
+        // Superseded by `highlights`. Kept so entries written before the switch
+        // don't lose their text; the site shows it only when there are no points.
+        defineField({
+            name: 'description',
+            title: 'Description (old paragraph)',
             type: 'text',
             rows: 4,
-            validation: (Rule) => Rule.required(),
+            deprecated: {
+                reason: 'Move this text into the bulleted Description above, then clear this field.',
+            },
+            hidden: ({ value }) => value === undefined,
+            initialValue: undefined,
         }),
 
         // Only the month and year are shown on the site; the day is ignored.

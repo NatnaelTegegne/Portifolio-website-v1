@@ -176,6 +176,18 @@
   max-width: 640px;
 }
 
+.exp-bullets {
+  list-style: disc;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.exp-bullets li::marker {
+  color: var(--text-muted);
+}
+
 /* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 640px) {
   .experience-section { padding: 4rem 1.25rem; }
