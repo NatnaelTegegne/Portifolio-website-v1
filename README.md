@@ -7,8 +7,8 @@ Personal site for Natnael Tegegne — portfolio, project showcase, and blog.
 | Folder      | What it is                                                                 |
 | ----------- | -------------------------------------------------------------------------- |
 | `frontend/` | React 19 + Vite site. Reads content from Sanity.                            |
-| `studio/`   | Sanity Studio — where posts and projects are written. See its own README.   |
-| `backend/`  | Express + MongoDB API. Currently unused by the frontend (see note below).   |
+| `studio/`   | Sanity Studio — where posts, projects, and experience are written. See its own README. |
+| `backend/`  | Express + MongoDB API. Currently unused by the frontend.                    |
 
 ## Getting started
 
@@ -34,6 +34,8 @@ npm run server    # Express backend only
 | `/`            | One-page portfolio: hero, about, projects, experience, contact |
 | `/blog`        | Post index with category filtering                      |
 | `/blog/:slug`  | Individual post                                         |
+| `/projects`    | Every visible project                                   |
+| `/projects/:slug` | Project case study (only for projects with a body)   |
 
 Because this is a client-routed SPA, the host must rewrite all paths to
 `index.html` or a direct visit to `/blog/some-post` 404s. `frontend/vercel.json`
@@ -54,18 +56,11 @@ in [`studio/README.md`](studio/README.md).
 
 ## Where content lives
 
-- **Blog posts and projects** — Sanity. Edit in the Studio, no deploy needed.
-- **Hero, about, experience, contact copy** — still hardcoded in the components
-  under `frontend/src/components/`.
+- **Blog posts, projects, and experience** — Sanity. Edit in the Studio, no
+  deploy needed. A role with no end date shows as current in the timeline.
+- **Hero, about, contact copy** — still hardcoded in the components under
+  `frontend/src/components/`.
 
-## Note on the backend
-
-`backend/` exposes `/api/projects` and `/api/contact` against MongoDB, but the
-frontend does not call either one:
-
-- Projects now come from Sanity.
-- The contact form posts to a Google Apps Script (`VITE_API_URL`), not to
-  `/api/contact`.
-
-So the backend is currently dead code. Either point the contact form at it or
-retire it — leaving it half-wired is the confusing option.
+On a fresh dataset, import the starter content once from `studio/`:
+`npm run seed` (projects) and `npm run seed:experience` (experience timeline).
+See [`studio/README.md`](studio/README.md) for details.
